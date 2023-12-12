@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Star Triangle</title>
+  </head>
+  <body>
+    <div id="triangle"></div>
+
+    <script>
+      function numberOneTriangleHTML(n) {
+        let triangle = "";
+        for (let i = 1; i <= n; i++) {
+          triangle += "*".repeat(i) + "<br>";
+        }
+        return triangle;
+      }
+
+      document.getElementById("triangle").innerHTML = numberOneTriangleHTML(4);
+
+      function renderTriangle() {
+        const userInput = parseInt(
+          prompt("Enter the number of rows for the triangle (1-10):"),
+          10
+        );
+        if (userInput >= 1 && userInput <= 10) {
+          document.getElementById("triangle").innerHTML =
+            numberOneTriangleHTML(userInput);
+        } else {
+          alert("Please enter a number between 1 and 10.");
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prime Numbers Sum Calculator</title>
+  </head>
+  <body>
+    <h1>Prime Numbers Sum Calculator</h1>
+    <form id="primeForm">
+      <label for="a">a:</label>
+      <input type="number" id="a" name="a" required />
+      <label for="b">b:</label>
+      <input type="number" id="b" name="b" required />
+      <input type="submit" value="Calculate Sum of Prime Numbers" />
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+      document
+        .getElementById("primeForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const a = parseInt(document.getElementById("a").value, 10);
+          const b = parseInt(document.getElementById("b").value, 10);
+          const primes = getPrimes(a, b);
+          const sum = primes.reduce((acc, cur) => acc + cur, 0);
+
+          document.getElementById("result").textContent =
+            "Sum of prime numbers: " +
+            sum +
+            ". Primes are: " +
+            primes.join(", ");
+        });
+
+      function isPrime(num) {
+        if (num <= 1) return false;
+        if (num <= 3) return true;
+        if (num % 2 === 0 || num % 3 === 0) return false;
+
+        for (let i = 5; i * i <= num; i += 6) {
+          if (num % i === 0 || num % (i + 2) === 0) return false;
+        }
+        return true;
+      }
+
+      function getPrimes(start, end) {
+        const primes = [];
+        for (let i = start; i <= end; i++) {
+          if (isPrime(i)) primes.push(i);
+        }
+        return primes;
+      }
+    </script>
+  </body>
+</html>
